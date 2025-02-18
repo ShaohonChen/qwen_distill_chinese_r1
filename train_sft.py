@@ -20,7 +20,7 @@ PROMPT_TEMPLATE = (
     "<|im_start|>user\n{input}<|im_end|>\n<|im_start|>assistant\n"
 )
 THINKING_RETURN_TEMPLATE = (
-    "<|think_end|>\n{reasoning_content}<|think_start|>\n{content}<|im_end|>"
+    "<|think_start|>\n{reasoning_content}<|think_end|>\n{content}<|im_end|>"
 )
 
 
