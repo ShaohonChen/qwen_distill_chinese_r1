@@ -17,7 +17,7 @@ DEFAULT_THINK_START_TOKEN = "<|think_start|>"
 DEFAULT_THINK_END_TOKEN = "<|think_end|>"
 PROMPT_TEMPLATE = (
     "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n"
-    "<|im_start|>user\n{input}<|im_end|>\n<|im_start|>assistant\n let's think step by step<|think_start|>\n"
+    "<|im_start|>user\n{input}<|im_end|>\n<|im_start|>assistant\nlet's think step by step<|think_start|>\n"
 )
 THINKING_RETURN_TEMPLATE = "{reasoning_content}<|think_end|>\n{content}<|im_end|>"
 
