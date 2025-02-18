@@ -33,6 +33,7 @@ class DataArguments:
         default=None, metadata={"help": "Path to the training data."}
     )
     data_files: str = None
+    sampling: int = 20000
 
 
 @dataclass
@@ -45,6 +46,7 @@ class TrainingArguments(transformers.TrainingArguments):
             "help": "Maximum sequence length. Sequences will be right padded (and possibly truncated)."
         },
     )
+    seed: int = 42
 
 
 @dataclass
@@ -150,8 +152,8 @@ def train():
         data_args.dataset_id_or_path, data_files=data_args.data_files
     )
 
-    train_dataset = distill_data["train"].shuffle(seed=42)
-    train_dataset = train_dataset.select(range(20000))  # for speed
+    train_dataset = distill_data["train"].shuffle(seed=training_args.seed)
+    train_dataset = train_dataset.select(range(data_args.sampling))  # for speed
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
