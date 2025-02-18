@@ -6,16 +6,26 @@ from transformers import (
     TextIteratorStreamer,
     pipeline,
 )
+import peft
 import torch
 from threading import Thread
 
 # 加载 Qwen2.5-7B-Instruct 模型和分词器
-# model_name = "/mnt/work/weights/Qwen2__5-0__5B-Instruct"  # origin
-model_name = "/mnt/work/output/Qwen-05BI-Chinese-R1-Distill"
+model_name = "/mnt/work/weights/Qwen2__5-0__5B-Instruct"  # origin
+# model_name = "/mnt/work/output/Qwen-05B-Chinese-R1-Distill"
 
 model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype="auto")
+try:
+    model = peft.PeftModel.from_pretrained(model, model_name)
+    print("---use peft model---")
+except:
+    print("---not found peft model---")
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, device="npu:0")
+
+# device = "npu:0"  # for Ascend NPU
+# device = "cuda:0"  # for Nvidia GPU
+device = "cpu"  # for CPU
+pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, device=device)
 
 
 def qwen_chat_stream(message, history):
