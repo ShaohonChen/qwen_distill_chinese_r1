@@ -35,7 +35,7 @@ python train_sft.py --config configs/qwen2.5-0.5B-lora-sft.yaml
 使用如下命令开始运行Qwen0.5B蒸馏（8GPU，zero2）
 
 ```bash
-bash scripts/train_sft_05B_8npu.sh
+bash scripts/train_sft_05BI_8npu.sh
 ```
 
 ## 运行gradio的案例

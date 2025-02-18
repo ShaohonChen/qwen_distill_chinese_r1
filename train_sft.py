@@ -152,7 +152,7 @@ def train():
     )
 
     train_dataset = distill_data["train"].shuffle(seed=42)
-    train_dataset = train_dataset.select(range(10000))  # for speed
+    train_dataset = train_dataset.select(range(20000))  # for speed
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
@@ -165,7 +165,7 @@ def train():
     )
     process_func = partial(process_datasets, tokenizer=tokenizer)
 
-    train_dataset = train_dataset.map(process_func, num_proc=4)
+    train_dataset = train_dataset.map(process_func, num_proc=32)
 
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,

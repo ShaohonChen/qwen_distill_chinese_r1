@@ -6,5 +6,5 @@ accelerate launch \
     --main_process_port 25001 \
     --config_file configs/dpsp_z2.yaml \
     train_sft.py \
-    --config configs/qwen2.5-0.5B-lora-sft.yaml
+    --config configs/qwen2.5-0.5BI-lora-sft.yaml
    
