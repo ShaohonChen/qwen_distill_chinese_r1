@@ -37,3 +37,11 @@ python train_sft.py --config configs/qwen2.5-0.5B-lora-sft.yaml
 ```bash
 bash scripts/train_sft_05B_8npu.sh
 ```
+
+## 运行gradio的案例
+
+需要记得在代码中改一下模型地址
+
+```bash
+python demo.py
+```
