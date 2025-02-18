@@ -1,0 +1,48 @@
+
+# Swanlab 训练流程记录参数
+swanlab: true # 是否开启 Swanlab 
+workspace: null
+project: Qwen-3B-Chinese-R1-Distill
+experiment_name: 05B-SFT-lora
+mode: cloud
+
+# Model arguments
+model_name_or_path: /mnt/work/weights/Qwen2__5-0__5B
+bf16: true
+tf32: false
+
+# Dataset arguments
+dataset_id_or_path: json
+data_files: /mnt/work/datasets/Chinese-DeepSeek-R1-Distill-data-110k/distill_r1_110k.jsonl
+
+# Training arguments
+output_dir: /mnt/work/output/Qwen-05B-Chinese-R1-Distill
+max_steps: 2000
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 4
+gradient_checkpointing: false
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+evaluation_strategy: null
+learning_rate: 2e-5
+lr_scheduler_type: cosine
+weight_decay: 0.
+warmup_ratio: 0.03
+
+# Lora Arguments
+r: 16
+lora_alpha: 6
+# target_modules:
+#   - "q_proj"
+#   - "v_proj"
+lora_dropout: 0.1
+bias: "none"
+
+# Logging arguments
+logging_strategy: steps
+logging_steps: 1
+save_strategy: "steps"
+save_steps: 500
+save_total_limit: 1
+seed: 42
+
