@@ -38,6 +38,8 @@ python train_sft.py --config configs/qwen2.5-0.5B-lora-sft.yaml
 bash scripts/train_sft_05BI_8npu.sh
 ```
 
+相关实验记录可以在SwanLab上看到[https://swanlab.cn/@ShaohonChen/Qwen-3B-Chinese-R1-Distill/charts](https://swanlab.cn/@ShaohonChen/Qwen-3B-Chinese-R1-Distill/charts)
+
 ## 运行gradio的案例
 
 需要记得在代码中改一下模型地址
