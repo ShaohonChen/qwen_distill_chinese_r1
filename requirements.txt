@@ -1,0 +1,9 @@
+torch
+transformers
+datasets
+accelerate
+deepspeed
+peft
+modelscope
+trl
+swanlab
