@@ -42,7 +42,7 @@ bias: "none"
 logging_strategy: steps
 logging_steps: 1
 save_strategy: "steps"
-save_steps: 500
+save_steps: 250
 save_total_limit: 1
 seed: 42
 
