@@ -17,11 +17,9 @@ DEFAULT_THINK_START_TOKEN = "<|think_start|>"
 DEFAULT_THINK_END_TOKEN = "<|think_end|>"
 PROMPT_TEMPLATE = (
     "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n"
-    "<|im_start|>user\n{input}<|im_end|>\n<|im_start|>assistant\n"
+    "<|im_start|>user\n{input}<|im_end|>\n<|im_start|>assistant\n let's think step by step<|think_start|>\n"
 )
-THINKING_RETURN_TEMPLATE = (
-    "<|think_start|>\n{reasoning_content}<|think_end|>\n{content}<|im_end|>"
-)
+THINKING_RETURN_TEMPLATE = "{reasoning_content}<|think_end|>\n{content}<|im_end|>"
 
 
 @dataclass
@@ -51,6 +49,7 @@ class TrainingArguments(transformers.TrainingArguments):
 
 @dataclass
 class LoraArguments:
+    lora: bool = True
     r: int = 64
     lora_alpha: int = 16
     lora_dropout: float = 0.05
@@ -174,15 +173,16 @@ def train():
     )
 
     # 添加LoRA adaptor
-    lora_config = peft.LoraConfig(
-        r=lora_args.r,
-        lora_alpha=lora_args.lora_alpha,
-        lora_dropout=lora_args.lora_dropout,
-        target_modules=lora_args.target_modules,
-        bias=lora_args.lora_bias,
-    )
-    model = peft.get_peft_model(model, lora_config)
-    model.print_trainable_parameters()
+    if lora_args.lora:
+        lora_config = peft.LoraConfig(
+            r=lora_args.r,
+            lora_alpha=lora_args.lora_alpha,
+            lora_dropout=lora_args.lora_dropout,
+            target_modules=lora_args.target_modules,
+            bias=lora_args.lora_bias,
+        )
+        model = peft.get_peft_model(model, lora_config)
+        model.print_trainable_parameters()
 
     smart_tokenizer_and_embedding_resize(
         special_tokens_list=[DEFAULT_THINK_START_TOKEN, DEFAULT_THINK_END_TOKEN],
