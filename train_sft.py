@@ -152,7 +152,7 @@ def train():
     )
 
     train_dataset = distill_data["train"].shuffle(seed=42)
-    # train_dataset = train_dataset.select(range(50))  # for debug
+    train_dataset = train_dataset.select(range(10000))  # for speed
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
