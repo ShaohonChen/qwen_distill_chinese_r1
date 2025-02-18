@@ -107,7 +107,6 @@ def smart_tokenizer_and_embedding_resize(
 
 
 def process_datasets(examples, tokenizer):
-    # 使用tokenizer的apply_chat_template方法
     prompt_text = PROMPT_TEMPLATE.format_map(examples)
     target_text = THINKING_RETURN_TEMPLATE.format_map(examples)
     prompt_tokens = tokenizer.encode(prompt_text, padding="longest", truncation=True)
