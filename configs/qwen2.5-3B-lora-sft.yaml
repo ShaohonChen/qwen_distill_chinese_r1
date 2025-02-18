@@ -16,7 +16,7 @@ dataset_id_or_path: json
 data_files: /mnt/work/datasets/Chinese-DeepSeek-R1-Distill-data-110k/distill_r1_110k.jsonl
 
 # Training arguments
-output_dir: /mnt/work/output/Qwen-3B-Chinese-R1-Distill
+output_dir: /mnt/work/output/Qwen-3B-lora-Chinese-R1-Distill
 max_steps: 1000
 per_device_train_batch_size: 2
 gradient_accumulation_steps: 4
