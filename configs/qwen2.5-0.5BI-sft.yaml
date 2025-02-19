@@ -3,7 +3,7 @@
 swanlab: true # 是否开启 Swanlab 
 workspace: null
 project: Qwen-3B-Chinese-R1-Distill
-experiment_name: 05BI-SFT
+experiment_name: 05BI
 mode: cloud
 
 # Model arguments

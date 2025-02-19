@@ -3,7 +3,7 @@
 swanlab: true # 是否开启 Swanlab 
 workspace: null
 project: Qwen-3B-Chinese-R1-Distill
-experiment_name: 3BI-SFT-lora
+experiment_name: 3BI-SFT
 mode: cloud
 
 # Model arguments
@@ -19,8 +19,9 @@ samping: 20000
 # Training arguments
 output_dir: /mnt/work/output/Qwen-3BI-Chinese-R1-Distill
 max_steps: 1000
-per_device_train_batch_size: 2
-gradient_accumulation_steps: 4
+model_max_length: 2048
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
 gradient_checkpointing: false
 gradient_checkpointing_kwargs:
   use_reentrant: false
